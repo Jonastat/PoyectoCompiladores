@@ -148,9 +148,7 @@ class AnalizadorLexico(var codigoFuente: String) {
             lexema += caracterActual
             obtenerSiguienteCaracter()
 
-            var caracter = codigoFuente[posicionActual]
-
-            if (caracter == ' ') {
+            if (codigoFuente[posicionActual] == ' ' || caracterActual == finCodigo) {
                 almacenarToken(lexema,
                     Categoria.CARACTER, filaInicial, columnaInicial)
                 return true
