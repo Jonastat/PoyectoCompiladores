@@ -45,8 +45,8 @@ class AnalizadorLexico(var codigoFuente: String) {
     /**
      * Método que guarda los tokens que se catalogan como error en una lista.
      */
-    fun reportarError(error: String, fila: Int, columna: Int) =
-        listaErrores.add(Error(error, fila, columna))
+    fun reportarError(error: String) =
+        listaErrores.add(Error(error, filaActual, columnaActual))
 
     /**
      * Método que hace Back Traking.
@@ -78,6 +78,7 @@ class AnalizadorLexico(var codigoFuente: String) {
             if (esComentarioDeBloque()) continue
             if (esComentarioDeLinea()) continue
             if (esFinSentencia()) continue
+            if (esDosPuntos()) continue
             if (esLlave()) continue
             if (esParentesis()) continue
             if (esSeparador()) continue
@@ -280,10 +281,11 @@ class AnalizadorLexico(var codigoFuente: String) {
                 obtenerSiguienteCaracter()
                 almacenarToken(
                     lexama,
-                    Categoria.OPERADOR_LOGICO, filaInicial, columnaInicial
+                    Categoria.OPERADOR_BINARIO, filaInicial, columnaInicial
                 )
                 return true
             } else {
+                reportarError("Falta el segundo '&' para completar el operador binario (and).")
                 hacerBT(posicionInicial, filaInicial, columnaInicial)
                 return false
             }
@@ -300,10 +302,11 @@ class AnalizadorLexico(var codigoFuente: String) {
                 obtenerSiguienteCaracter()
                 almacenarToken(
                     lexema,
-                    Categoria.OPERADOR_LOGICO, filaInicial, columnaInicial
+                    Categoria.OPERADOR_BINARIO, filaInicial, columnaInicial
                 )
                 return true
             } else {
+                reportarError("Falta el segundo '|' para completar el operador binario (or).")
                 hacerBT(posicionInicial, filaInicial, columnaInicial)
                 return false
             }
@@ -335,7 +338,7 @@ class AnalizadorLexico(var codigoFuente: String) {
             }
             almacenarToken(
                 lexema,
-                Categoria.OPERADOR_ARTIMETICO, filaInicial, columnaInicial
+                Categoria.OPERADOR_ARITMETICO, filaInicial, columnaInicial
             )
             return true
         }
@@ -359,13 +362,13 @@ class AnalizadorLexico(var codigoFuente: String) {
                 obtenerSiguienteCaracter()
                 almacenarToken(
                     lexema,
-                    Categoria.OPERADOR_DE_INCREMENTO_DECREMENTO, filaInicial, columnaInicial
+                    Categoria.OPERADOR_DE_INCREMENTO, filaInicial, columnaInicial
                 )
                 return true
             }
             almacenarToken(
                 lexema,
-                Categoria.OPERADOR_ARTIMETICO, filaInicial, columnaInicial
+                Categoria.OPERADOR_ARITMETICO, filaInicial, columnaInicial
             )
             return true
         }
@@ -389,13 +392,13 @@ class AnalizadorLexico(var codigoFuente: String) {
                 obtenerSiguienteCaracter()
                 almacenarToken(
                     lexema,
-                    Categoria.OPERADOR_DE_INCREMENTO_DECREMENTO, filaInicial, columnaInicial
+                    Categoria.OPERADOR_DE_DECREMENTO, filaInicial, columnaInicial
                 )
                 return true
             }
             almacenarToken(
                 lexema,
-                Categoria.OPERADOR_ARTIMETICO, filaInicial, columnaInicial
+                Categoria.OPERADOR_ARITMETICO, filaInicial, columnaInicial
             )
             return true
         }
@@ -430,6 +433,7 @@ class AnalizadorLexico(var codigoFuente: String) {
                 obtenerSiguienteCaracter()
                 if (caracterActual == finCodigo) {
                     if (caracterActual != '\"') {
+                        reportarError("Falta cerrar cadena de caracteres.")
                         almacenarToken(
                             lexema,
                             Categoria.CADENA_CARACTERES_SIN_CERRAR, filaInicial, columnaInicial
@@ -454,7 +458,7 @@ class AnalizadorLexico(var codigoFuente: String) {
      * @return true or false
      */
     fun esParentesis(): Boolean {
-        if (caracterActual == '(' || caracterActual == ')') {
+        if (caracterActual == '(') {
             var lexema = ""
             val filaInicial = filaActual
             val columnaInicial = columnaActual
@@ -462,7 +466,19 @@ class AnalizadorLexico(var codigoFuente: String) {
             obtenerSiguienteCaracter()
             almacenarToken(
                 lexema,
-                Categoria.PARENTESIS_APERTURA_CIERRE, filaInicial, columnaInicial
+                Categoria.PARENTESIS_APERTURA, filaInicial, columnaInicial
+            )
+            return true
+        }
+        if (caracterActual == ')') {
+            var lexema = ""
+            val filaInicial = filaActual
+            val columnaInicial = columnaActual
+            lexema += caracterActual
+            obtenerSiguienteCaracter()
+            almacenarToken(
+                lexema,
+                Categoria.PARENTESIS_CIERRE, filaInicial, columnaInicial
             )
             return true
         }
@@ -474,7 +490,7 @@ class AnalizadorLexico(var codigoFuente: String) {
      * @return true or false
      */
     fun esLlave(): Boolean {
-        if (caracterActual == '{' || caracterActual == '}') {
+        if (caracterActual == '{') {
             var lexema = ""
             val filaInicial = filaActual
             val columnaInicial = columnaActual
@@ -482,7 +498,19 @@ class AnalizadorLexico(var codigoFuente: String) {
             obtenerSiguienteCaracter()
             almacenarToken(
                 lexema,
-                Categoria.LLAVE_APERTURA_CIERRE, filaInicial, columnaInicial
+                Categoria.LLAVE_APERTURA, filaInicial, columnaInicial
+            )
+            return true
+        }
+        if (caracterActual == '}') {
+            var lexema = ""
+            val filaInicial = filaActual
+            val columnaInicial = columnaActual
+            lexema += caracterActual
+            obtenerSiguienteCaracter()
+            almacenarToken(
+                lexema,
+                Categoria.LLAVE_CIERRE, filaInicial, columnaInicial
             )
             return true
         }
@@ -503,6 +531,26 @@ class AnalizadorLexico(var codigoFuente: String) {
             almacenarToken(
                 lexema,
                 Categoria.TERMINAL_FIN_SENTENCIA, filaInicial, columnaInicial
+            )
+            return true
+        }
+        return false
+    }
+
+    /**
+     * Método que valida si una palabra es dos puntos (:).
+     * @return true or false
+     */
+    fun esDosPuntos(): Boolean {
+        if (caracterActual == ':') {
+            var lexema = ""
+            val filaInicial = filaActual
+            val columnaInicial = columnaActual
+            lexema += caracterActual
+            obtenerSiguienteCaracter()
+            almacenarToken(
+                lexema,
+                Categoria.DOS_PUNTOS, filaInicial, columnaInicial
             )
             return true
         }
@@ -566,6 +614,7 @@ class AnalizadorLexico(var codigoFuente: String) {
                 obtenerSiguienteCaracter()
                 if (caracterActual == finCodigo) {
                     if (caracterActual != '@') {
+                        reportarError("Falta cerrar comentario de bloque.")
                         almacenarToken(
                             lexema,
                             Categoria.COMENTARIO_DE_BLOQUE_SIN_CERRAR, filaInicial, columnaInicial
@@ -588,22 +637,29 @@ class AnalizadorLexico(var codigoFuente: String) {
     /**
      * Método que compara si una palabra que entra como parámetro es una de las palabras reservadas del lenguaje,
      * la palabra debe coincidir exactamente en cuanto a mayúsculas y minúsculas ("Entero", "Real",
-     * "Para", "Mientras", "Privado", "Publico", "Paquete", "Importar", "Clase", "Return", "Break").
+     * "Para", "Mientras", "Privado", Returna", "Break").
      * @param String cadena
      * @return boolean true or false
      */
     fun palabraReservada(cadena: String): Boolean {
         return if (cadena == "Entero") true
         else if (cadena == "Real") true
+        else if (cadena == "Caracter") true
+        else if (cadena == "Cadena") true
         else if (cadena == "Para") true
         else if (cadena == "Mientras") true
-        else if (cadena == "Privado") true
-        else if (cadena == "Publico") true
-        else if (cadena == "Paquete") true
-        else if (cadena == "Importar") true
-        else if (cadena == "Clase") true
-        else if (cadena == "Return") true
+        else if (cadena == "Haga") true
+        else if (cadena == "Retorna") true
         else if (cadena == "Break") true
+        else if (cadena == "Fun") true
+        else if (cadena == "Var") true
+        else if (cadena == "Val") true
+        else if (cadena == "Si") true
+        else if (cadena == "Sino") true
+        else if (cadena == "Imprimir") true
+        else if (cadena == "Invocar") true
+        else if (cadena == "Binario") true
+        else if (cadena == "Vacio") true
         else false
     }
 
