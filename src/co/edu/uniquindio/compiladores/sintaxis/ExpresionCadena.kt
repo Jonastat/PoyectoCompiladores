@@ -6,7 +6,7 @@ import javafx.scene.control.TreeItem
 class ExpresionCadena(var cadena: String) : Expresion() {
 
     override fun getArbolVisual(): TreeItem<String> {
-        val raiz = TreeItem("Expresion Cadena")
+        val raiz = TreeItem("Expresión Cadena:")
         raiz.children.add(TreeItem(cadena))
         return raiz
     }

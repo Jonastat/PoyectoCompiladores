@@ -4,7 +4,7 @@ import co.edu.uniquindio.compiladores.lexico.Token
 import javafx.scene.control.TreeItem
 
 
-class InvocacionFuncion(var nombreFuncion: Token, var listaArgumentos:ArrayList<Parametro>) : Sentencia() {
+class InvocacionFuncion(var nombreFuncion: Token, var listaArgumentos:ArrayList<Argumento>) : Sentencia() {
     override fun toString(): String {
         return "Invocacion(nombre='$nombreFuncion', listaArguementos=$listaArgumentos)"
     }
@@ -14,11 +14,11 @@ class InvocacionFuncion(var nombreFuncion: Token, var listaArgumentos:ArrayList<
 
         raiz.children.add(TreeItem("Nombre: ${nombreFuncion.lexema}"))
 
-        var raizParametros = TreeItem("Argumentos:")
-        for (parametro in listaArgumentos) {
-            raizParametros.children.add(parametro.getArbolVisual())
+        var raizArgumentos = TreeItem("Argumentos:")
+        for (argumento in listaArgumentos) {
+            raizArgumentos.children.add(argumento.getArbolVisual())
         }
-        raiz.children.add(raizParametros)
+        raiz.children.add(raizArgumentos)
 
         return raiz
     }

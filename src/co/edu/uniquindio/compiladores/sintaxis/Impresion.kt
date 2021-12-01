@@ -2,15 +2,15 @@ package co.edu.uniquindio.compiladores.sintaxis
 
 import javafx.scene.control.TreeItem
 
-class Impresion(var expresionCadena: ExpresionCadena?):Sentencia() {
-
-    override fun toString(): String {
-        return "Impresion(lista=$expresionCadena)"
-    }
+class Impresion(var listaExpresionCadena: ArrayList<ExpresionCadena>):Sentencia() {
 
     override fun getArbolVisual(): TreeItem<String> {
         val raiz = TreeItem<String>("Imprimir:")
-        raiz.children.add(expresionCadena?.getArbolVisual())
+        var raizExpresionCadena = TreeItem("Expresiones Cadena:")
+        for (expresionCadena in listaExpresionCadena) {
+            raizExpresionCadena.children.add(expresionCadena.getArbolVisual())
+        }
+        raiz.children.add(raizExpresionCadena)
         return raiz
     }
 

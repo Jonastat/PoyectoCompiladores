@@ -82,6 +82,7 @@ class AnalizadorLexico(var codigoFuente: String) {
             if (esLlave()) continue
             if (esParentesis()) continue
             if (esSeparador()) continue
+            if (esCorchete()) continue
 
             almacenarToken(
                 "" + caracterActual,
@@ -426,7 +427,6 @@ class AnalizadorLexico(var codigoFuente: String) {
             var lexema = ""
             val filaInicial = filaActual
             val columnaInicial = columnaActual
-            lexema += caracterActual
             obtenerSiguienteCaracter()
             while (caracterActual != '\"') {
                 lexema += caracterActual
@@ -442,7 +442,6 @@ class AnalizadorLexico(var codigoFuente: String) {
                     }
                 }
             }
-            lexema += caracterActual
             obtenerSiguienteCaracter()
             almacenarToken(
                 lexema,
@@ -511,6 +510,38 @@ class AnalizadorLexico(var codigoFuente: String) {
             almacenarToken(
                 lexema,
                 Categoria.LLAVE_CIERRE, filaInicial, columnaInicial
+            )
+            return true
+        }
+        return false
+    }
+
+    /**
+     * Método que valida si una palabra es una llave de apertura o cierre ([)u(]).
+     * @return true or false
+     */
+    fun esCorchete(): Boolean {
+        if (caracterActual == '[') {
+            var lexema = ""
+            val filaInicial = filaActual
+            val columnaInicial = columnaActual
+            lexema += caracterActual
+            obtenerSiguienteCaracter()
+            almacenarToken(
+                lexema,
+                Categoria.CORCHETE_APERTURA, filaInicial, columnaInicial
+            )
+            return true
+        }
+        if (caracterActual == ']') {
+            var lexema = ""
+            val filaInicial = filaActual
+            val columnaInicial = columnaActual
+            lexema += caracterActual
+            obtenerSiguienteCaracter()
+            almacenarToken(
+                lexema,
+                Categoria.CORCHETE_CIERRE, filaInicial, columnaInicial
             )
             return true
         }
@@ -660,6 +691,7 @@ class AnalizadorLexico(var codigoFuente: String) {
         else if (cadena == "Invocar") true
         else if (cadena == "Binario") true
         else if (cadena == "Vacio") true
+        else if (cadena == "Nulo") true
         else false
     }
 
