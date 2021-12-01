@@ -1,0 +1,11 @@
+Fun Entero sumar (a : Entero, b : Entero) {
+Si a != b {
+Imprimir("Este es el bloque de sentencias verdadero.")
+Var Real a
+} Sino {
+Val Entero b
+}
+Mientras x >= y Haga {
+Invocar restar(p : Real, q : Real);
+}
+}
