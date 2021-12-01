@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a842f407-9f94-40c5-aa6b-93eca0567c9f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Argumento.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Retorno.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/lexico/AnalizadorLexico.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/lexico/AnalizadorLexico.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/lexico/Categoria.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/lexico/Categoria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/AnalizadorSintactico.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/AnalizadorSintactico.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/ExpresionCadena.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/ExpresionCadena.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Impresion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Impresion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/InvocacionFuncion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/InvocacionFuncion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/ValorLogico.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/lexico/AnalizadorLexico.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/lexico/AnalizadorLexico.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/lexico/Categoria.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/lexico/Categoria.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/AnalizadorSintactico.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/AnalizadorSintactico.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/ExpresionCadena.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/ExpresionCadena.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Impresion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Impresion.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/InvocacionFuncion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/InvocacionFuncion.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/ValorLogico.kt" beforeDir="false" />
-    </list>
+    <list default="true" id="a842f407-9f94-40c5-aa6b-93eca0567c9f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
