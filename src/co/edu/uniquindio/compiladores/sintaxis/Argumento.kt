@@ -1,5 +1,7 @@
 package co.edu.uniquindio.compiladores.sintaxis
 
+import co.edu.uniquindio.compiladores.lexico.Error
+import co.edu.uniquindio.compiladores.semantica.TablaSimbolos
 import javafx.scene.control.TreeItem
 
 class Argumento () {
@@ -28,6 +30,16 @@ class Argumento () {
         }
 
         return raiz
+    }
+
+    fun obtenerTipoDato (tablaSimbolos: TablaSimbolos, ambito: String, listaErrores: ArrayList<Error>) : String {
+        if (exprecionCadena != null) {
+            return "Cadena"
+        }
+        if (expresionAritmetica != null) {
+            return expresionAritmetica!!.obtenerTipo(tablaSimbolos, ambito, listaErrores)
+        }
+        return ""
     }
 
 }

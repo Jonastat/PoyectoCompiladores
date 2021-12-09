@@ -3,6 +3,7 @@ package co.edu.uniquindio.compiladores.controladores
 import co.edu.uniquindio.compiladores.lexico.AnalizadorLexico
 import co.edu.uniquindio.compiladores.lexico.Token
 import co.edu.uniquindio.compiladores.lexico.Error
+import co.edu.uniquindio.compiladores.semantica.AnalizadorSemantico
 import co.edu.uniquindio.compiladores.sintaxis.AnalizadorSintactico
 import javafx.collections.FXCollections
 import javafx.event.ActionEvent
@@ -17,12 +18,16 @@ class InicioController : Initializable {
     @FXML lateinit var tablaTokens: TableView<Token>
     @FXML lateinit var tablaErroresL: TableView<Error>
     @FXML lateinit var tablaErroresSin: TableView<Error>
+    @FXML lateinit var tablaErroresSem: TableView<Error>
     @FXML lateinit var mensajeError: TableColumn<Error, String>
     @FXML lateinit var filaError: TableColumn<Error, Int>
     @FXML lateinit var columnaError: TableColumn<Error, Int>
     @FXML lateinit var mensajeErrorSin: TableColumn<Error, String>
     @FXML lateinit var filaErrorSin: TableColumn<Error, Int>
     @FXML lateinit var columnaErrorSin: TableColumn<Error, Int>
+    @FXML lateinit var mensajeErrorSem: TableColumn<Error, String>
+    @FXML lateinit var filaErrorSem: TableColumn<Error, Int>
+    @FXML lateinit var columnaErrorSem: TableColumn<Error, Int>
     @FXML lateinit var codigoFuente: TextArea
     @FXML lateinit var colLexema: TableColumn<Token, String>
     @FXML lateinit var colCategoria: TableColumn<Token, String>
@@ -41,6 +46,9 @@ class InicioController : Initializable {
         mensajeErrorSin.cellValueFactory = PropertyValueFactory("error")
         filaErrorSin.cellValueFactory = PropertyValueFactory("fila")
         columnaErrorSin.cellValueFactory = PropertyValueFactory("columna")
+        mensajeErrorSem.cellValueFactory = PropertyValueFactory("error")
+        filaErrorSem.cellValueFactory = PropertyValueFactory("fila")
+        columnaErrorSem.cellValueFactory = PropertyValueFactory("columna")
     }
 
     @FXML
@@ -62,7 +70,12 @@ class InicioController : Initializable {
                 tablaErroresSin.items = FXCollections.observableArrayList(sintaxis.listaErrores)
                 if (uc != null) {
                     arbolVisual.root = uc.getArbolVisual()
-
+                    val semantica = AnalizadorSemantico(uc!!)
+                    semantica.llenarTablaSimbolos()
+                    print(semantica.tablaSimbolos)
+                    semantica.analizarSemantica()
+                    print(semantica.listaErrores)
+                    tablaErroresSem.items = FXCollections.observableArrayList(semantica.listaErrores)
                 }
             } else {
                 var alert = Alert(Alert.AlertType.WARNING)

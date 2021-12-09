@@ -1,8 +1,10 @@
 package co.edu.uniquindio.compiladores.sintaxis
 
 import co.edu.uniquindio.compiladores.lexico.Categoria
+import co.edu.uniquindio.compiladores.lexico.Error
 import javafx.scene.control.TreeItem
 import co.edu.uniquindio.compiladores.lexico.Token
+import co.edu.uniquindio.compiladores.semantica.TablaSimbolos
 
 class Retorno () : Sentencia() {
 
@@ -39,6 +41,15 @@ class Retorno () : Sentencia() {
         }
 
         return raiz
+    }
+
+    override fun analizarSemantica(tablaSimbolos: TablaSimbolos, listaErrores: ArrayList<Error>, ambito: String) {
+        if (expresion != null) {
+            expresion!!.analizarSemantica(tablaSimbolos, listaErrores, ambito)
+        }
+        if (invocacionFuncion != null) {
+            invocacionFuncion!!.analizarSemantica(tablaSimbolos, listaErrores, ambito)
+        }
     }
 
 }

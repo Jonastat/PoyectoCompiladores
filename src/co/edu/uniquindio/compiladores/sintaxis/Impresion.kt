@@ -1,5 +1,7 @@
 package co.edu.uniquindio.compiladores.sintaxis
 
+import co.edu.uniquindio.compiladores.lexico.Error
+import co.edu.uniquindio.compiladores.semantica.TablaSimbolos
 import javafx.scene.control.TreeItem
 
 class Impresion(var listaExpresionCadena: ArrayList<ExpresionCadena>):Sentencia() {
@@ -12,6 +14,12 @@ class Impresion(var listaExpresionCadena: ArrayList<ExpresionCadena>):Sentencia(
         }
         raiz.children.add(raizExpresionCadena)
         return raiz
+    }
+
+    override fun analizarSemantica(tablaSimbolos: TablaSimbolos, listaErrores: ArrayList<Error>, ambito: String) {
+        for (e in listaExpresionCadena) {
+            e!!.analizarSemantica(tablaSimbolos, listaErrores, ambito)
+        }
     }
 
 }

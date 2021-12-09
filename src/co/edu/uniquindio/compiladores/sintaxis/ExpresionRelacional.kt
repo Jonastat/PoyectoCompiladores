@@ -1,6 +1,8 @@
 package co.edu.uniquindio.compiladores.sintaxis
 
+import co.edu.uniquindio.compiladores.lexico.Error
 import co.edu.uniquindio.compiladores.lexico.Token
+import co.edu.uniquindio.compiladores.semantica.TablaSimbolos
 import javafx.scene.control.TreeItem
 
 class ExpresionRelacional():Expresion() {
@@ -25,6 +27,17 @@ class ExpresionRelacional():Expresion() {
         raiz.children.add(TreeItem("Operador relacional: ${operador!!.lexema}"))
         raiz.children.add(expresionAritmetica2!!.getArbolVisual())
         return raiz
+    }
+
+    override fun obtenerTipo(tablaSimbolos: TablaSimbolos, ambito: String, listaErrores: ArrayList<Error>): String {
+        return "Binario"
+    }
+
+    override fun analizarSemantica(tablaSimbolos: TablaSimbolos, listaErrores: ArrayList<Error>, ambito: String) {
+        if (expresionAritmetica1 != null && expresionAritmetica2 != null){
+            expresionAritmetica1!!.analizarSemantica(tablaSimbolos, listaErrores, ambito)
+            expresionAritmetica2!!.analizarSemantica(tablaSimbolos, listaErrores, ambito)
+        }
     }
 
 }

@@ -1,5 +1,7 @@
 package co.edu.uniquindio.compiladores.sintaxis
+import co.edu.uniquindio.compiladores.lexico.Error
 import co.edu.uniquindio.compiladores.lexico.Token
+import co.edu.uniquindio.compiladores.semantica.TablaSimbolos
 import javafx.scene.control.TreeItem
 
 class ExpresionLogica ():Expresion() {
@@ -64,6 +66,10 @@ class ExpresionLogica ():Expresion() {
 
     override fun toString(): String {
         return "ExpresionLogica(espresionAritmetica1=$expresionAritmetica1, espresionAritmetica2=$expresionAritmetica2, espresionRelacional=$expresionRelacional, oLogico=$oLogico, oBinario=$oBinario)"
+    }
+
+    override fun obtenerTipo(tablaSimbolos: TablaSimbolos, ambito: String, listaErrores: ArrayList<Error>): String {
+        return "Binario"
     }
 
 }

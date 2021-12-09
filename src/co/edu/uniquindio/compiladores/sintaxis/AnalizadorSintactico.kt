@@ -245,10 +245,10 @@ class AnalizadorSintactico(var listaTokens: ArrayList<Token>) {
         if (s != null) {
             return s
         }
-        /*s = esArreglo()
+        s = esArreglo()
         if (s != null){
             return s
-        }*/
+        }
         return null
     }
 
@@ -345,28 +345,24 @@ class AnalizadorSintactico(var listaTokens: ArrayList<Token>) {
     }
 
     /**
-     * <Asignacion>::=<IdentificadorDeVariable> OpAsignacion <Expresion> ";" | <IdentificadorDeVariable> OpAsignacion <InvocacionFuncion> ";"
+     * <Asignacion>::=<IdentificadorDeVariable> OpAsignacion <Expresion> | <IdentificadorDeVariable> OpAsignacion <InvocacionFuncion>
      */
     fun esAsignacion(): Asignacion? {
 
-        if (tokenActual.categoria == Categoria.IDENTIFICADOR) {
-            val identificador = tokenActual
+        if (tokenActual.categoria == Categoria.IDENTIFICADOR || tokenActual.categoria == Categoria.CARACTER) {
+            var identificador = tokenActual
             obtenerSiguienteToken()
             if (tokenActual.categoria == Categoria.OPERADOR_DE_ASIGNACION) {
-                val operadorAsignacion = tokenActual
+                var operadorAsignacion = tokenActual
                 obtenerSiguienteToken()
-                val invocacion = esInvocacionFuncion()
+                var invocacion = esInvocacionFuncion()
                 if (invocacion != null) {
                     return Asignacion(identificador, operadorAsignacion, invocacion)
                 } else {
                     val expresion = esExpresion()
+                    print(expresion)
                     if (expresion != null) {
-                        if (tokenActual.categoria == Categoria.TERMINAL_FIN_SENTENCIA) {
-                            obtenerSiguienteToken()
-                            return Asignacion(identificador, operadorAsignacion, expresion)
-                        } else {
-                            reportarError("Falta terminal fin de sentencia ';'.")
-                        }
+                        return Asignacion(identificador, operadorAsignacion, expresion)
                     } else {
                         reportarError("Falta expresión asignación.")
                     }
@@ -408,19 +404,19 @@ class AnalizadorSintactico(var listaTokens: ArrayList<Token>) {
      */
     fun esExpresion(): Expresion? {
 
-        var expresion = esExpresionLogica()
-        if (expresion != null) {
-            return expresion
+        val expresionLogica = esExpresionLogica()
+        if (expresionLogica != null) {
+            return expresionLogica
         }
-        var expresionAri = esExpresionAritmetica()
-        if (expresionAri != null) {
-            return expresionAri
+        val expresionAritmetica = esExpresionAritmetica()
+        if (expresionAritmetica != null) {
+            return expresionAritmetica
         }
-        var expresionRela = esExpresionRelacional()
-        if (expresionRela != null) {
-            return expresionRela
+        val expresionRelacional = esExpresionRelacional()
+        if (expresionRelacional != null) {
+            return expresionRelacional
         }
-        var expresionCadena = esExpresionCadena()
+        val expresionCadena = esExpresionCadena()
         if (expresionCadena != null) {
             return expresionCadena
         }
@@ -457,7 +453,7 @@ class AnalizadorSintactico(var listaTokens: ArrayList<Token>) {
                 reportarError("Falta expresión aritmética.")
             }
         } else {
-            var valorNum = esValorNumerico()
+            val valorNum = esValorNumerico()
             if (valorNum != null) {
                 obtenerSiguienteToken()
                 if (tokenActual.categoria == Categoria.OPERADOR_ARITMETICO) {
@@ -469,6 +465,7 @@ class AnalizadorSintactico(var listaTokens: ArrayList<Token>) {
                         return ExpresionAritmetica(valorNum, oPa, exPA)
                     }
                 } else {
+                    print("El método esExpresionAritmetica() retornará un valor numérico: $valorNum\n")
                     return ExpresionAritmetica(valorNum)
                 }
             }
@@ -487,12 +484,12 @@ class AnalizadorSintactico(var listaTokens: ArrayList<Token>) {
             obtenerSiguienteToken()
             if (tokenActual.categoria == Categoria.ENTERO || tokenActual.categoria == Categoria.REAL || tokenActual.categoria == Categoria.IDENTIFICADOR || tokenActual.categoria == Categoria.CARACTER) {
                 val termino = tokenActual
-                return ValorNumerico(signo, termino)
+                return ValorNumerico(signo.lexema, termino)
             }
         } else {
             if (tokenActual.categoria == Categoria.ENTERO || tokenActual.categoria == Categoria.REAL || tokenActual.categoria == Categoria.IDENTIFICADOR || tokenActual.categoria == Categoria.CARACTER) {
                 val termino = tokenActual
-                return ValorNumerico(null, termino)
+                return ValorNumerico("+", termino)
             }
         }
         return null
@@ -691,6 +688,7 @@ class AnalizadorSintactico(var listaTokens: ArrayList<Token>) {
     fun esExpresionRelacional(): ExpresionRelacional? {
         val expreAritmetica = esExpresionAritmetica()
         if (expreAritmetica != null) {
+            print("$expreAritmetica\n")
             if (tokenActual.categoria == Categoria.OPERADOR_RELACIONAL) {
                 val operador = tokenActual
                 obtenerSiguienteToken()
@@ -737,40 +735,67 @@ class AnalizadorSintactico(var listaTokens: ArrayList<Token>) {
         return null
     }
 
-/*    fun esArreglo(): Arreglo? {
-        var tipoDato = esTipoDato()
-        if (tipoDato != null){
+    /**
+     * <Arreglo> ::= Arreglo identificador ":" <TipoDato> [ "=" "["<ListaArgumentos>"]"]
+     */
+    fun esArreglo(): Arreglo? {
+        if (tokenActual.categoria == Categoria.PALABRA_RESERVADA && tokenActual.lexema == "Arreglo") {
             obtenerSiguienteToken()
-            if (tokenActual.categoria == Categoria.CORCHETE_APERTURA) {
+            if (tokenActual.categoria == Categoria.IDENTIFICADOR || tokenActual.categoria == Categoria.CARACTER) {
+                val nombreArreglo = tokenActual
                 obtenerSiguienteToken()
-                if (tokenActual.categoria == Categoria.CORCHETE_CIERRE) {
+                if (tokenActual.categoria == Categoria.DOS_PUNTOS) {
                     obtenerSiguienteToken()
-                    if (tokenActual.categoria == Categoria.IDENTIFICADOR || tokenActual.categoria == Categoria.CARACTER) {
-                        var nombre = tokenActual
+                    val tipoDato = esTipoDato()
+                    if (tipoDato != null) {
                         obtenerSiguienteToken()
+                        var listaExpresiones: ArrayList<Expresion>
                         if (tokenActual.categoria == Categoria.OPERADOR_DE_ASIGNACION && tokenActual.lexema == "=") {
                             obtenerSiguienteToken()
-                            if (tokenActual.categoria == Categoria.LLAVE_APERTURA) {
+                            if (tokenActual.categoria == Categoria.CORCHETE_APERTURA) {
                                 obtenerSiguienteToken()
-                                val listaArreglo: ArrayList<Token> = esListaArreglo(tipoDato)
+                                listaExpresiones = esListaExpresion()
+                                obtenerSiguienteToken()
+                                return Arreglo(nombreArreglo, tipoDato, listaExpresiones)
+                            } else {
+                                reportarError("Arreglo: Falta corchete apertura.")
                             }
+                        } else {
+                            reportarError("Arreglo: Falta operador de asignación.")
                         }
+                    } else {
+                        reportarError("Arreglo: Falta definir tipo de dato.")
                     }
+                } else {
+                    reportarError("Arreglo: Falta dos puntos.")
                 }
+            } else {
+                reportarError("Arreglo: Falta identificador.")
             }
         }
         return null
     }
 
-    fun esListaArreglo(tipoDato: Token): ArrayList<Token> {
-        val listaArreglo = ArrayList<Token>()
-        if (tipoDato.lexema == "Entero") {
-            if (tokenActual.categoria == Categoria.ENTERO) {
+    /**
+     * <ListaExpresiones>::= <Expresion> ["," <ListaExpresiones>]
+     */
+    fun esListaExpresion(): ArrayList<Expresion> {
+        var listaExpresiones = ArrayList<Expresion>()
+        var e = esExpresion()
+        print("$e\n")
+        while (e != null) {
+            listaExpresiones.add(e)
+            if (tokenActual.categoria == Categoria.SEPARADOR) {
                 obtenerSiguienteToken()
-                while (p != null) {
-                    listaParametros.add(p)
+                e = esExpresion()
+            } else {
+                if (tokenActual.categoria == Categoria.CORCHETE_CIERRE) {
+                    break
+                } else {
+                    break
+                }
             }
         }
-        return  listaArreglo
-    }*/
+        return listaExpresiones
+    }
 }

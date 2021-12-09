@@ -677,6 +677,7 @@ class AnalizadorLexico(var codigoFuente: String) {
         else if (cadena == "Real") true
         else if (cadena == "Caracter") true
         else if (cadena == "Cadena") true
+        else if (cadena == "Arreglo") true
         else if (cadena == "Para") true
         else if (cadena == "Mientras") true
         else if (cadena == "Haga") true
