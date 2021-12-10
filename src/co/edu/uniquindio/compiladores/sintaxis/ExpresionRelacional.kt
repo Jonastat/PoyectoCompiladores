@@ -40,4 +40,9 @@ class ExpresionRelacional():Expresion() {
         }
     }
 
+    override fun getJavaCode(): String {
+        var codigo = ""
+        codigo += "${expresionAritmetica1!!.getJavaCode()} ${operador!!.getJavaCode()} ${expresionAritmetica2!!.getJavaCode()}"
+        return codigo
+    }
 }

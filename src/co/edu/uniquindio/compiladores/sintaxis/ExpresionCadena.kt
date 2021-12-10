@@ -21,4 +21,8 @@ class ExpresionCadena(var cadena: String) : Expresion() {
         return "Cadena"
     }
 
+    override fun getJavaCode(): String {
+        return "\"$cadena\""
+    }
+
 }

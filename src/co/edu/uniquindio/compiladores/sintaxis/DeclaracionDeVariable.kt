@@ -32,4 +32,14 @@ class DeclaracionDeVariable(var tipoDato:Token, var tipoVariable:Token,var  iden
         }
     }
 
+    override fun getJavaCode(): String {
+        var codigo = ""
+        if (tipoVariable.lexema == "Var") {
+            codigo += "${tipoDato.getJavaCode()} ${identificadorVariable.getJavaCode()};\n"
+        } else if (tipoVariable.lexema == "Val") {
+            codigo += "${tipoVariable.getJavaCode()} ${tipoDato.getJavaCode()} ${identificadorVariable.getJavaCode()};\n"
+        }
+        return codigo
+    }
+
 }

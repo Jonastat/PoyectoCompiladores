@@ -35,4 +35,13 @@ class CicloMientras (var expLogicoRelacional:ExpresionLogica?, var listaSentenci
         }
     }
 
+    override fun getJavaCode(): String {
+        var codigo = "while ("+expLogicoRelacional!!.getJavaCode()+"){\n"
+        for (s in listaSentencias) {
+            codigo += s.getJavaCode()
+        }
+        codigo += "}\n"
+        return codigo
+    }
+
 }

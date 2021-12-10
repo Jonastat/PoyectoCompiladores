@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a842f407-9f94-40c5-aa6b-93eca0567c9f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/semantica/AnalizadorSemantico.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/semantica/Simbolo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/semantica/TablaSimbolos.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Archivo de pruebas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Archivo de pruebas.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/controladores/InicioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/controladores/InicioController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/lexico/AnalizadorLexico.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/lexico/AnalizadorLexico.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/lexico/Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/lexico/Token.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/AnalizadorSintactico.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/AnalizadorSintactico.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Argumento.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Argumento.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Arreglo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Arreglo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Asignacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Asignacion.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/CicloMientras.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/CicloMientras.class" afterDir="false" />
@@ -20,13 +19,17 @@
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/ExpresionLogica.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/ExpresionLogica.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/ExpresionRelacional.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/ExpresionRelacional.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Funcion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Funcion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Impresion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Impresion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/InvocacionFuncion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/InvocacionFuncion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Parametro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Parametro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Retorno.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Retorno.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Sentencia.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/Sentencia.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/UnidadDeCompilacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/UnidadDeCompilacion.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/ValorNumerico.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/co/edu/uniquindio/compiladores/sintaxis/ValorNumerico.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProyectoCompiladores/inicio.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProyectoCompiladores/inicio.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/inicio.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/inicio.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/controladores/InicioController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/controladores/InicioController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/lexico/AnalizadorLexico.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/lexico/AnalizadorLexico.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/lexico/Token.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/lexico/Token.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/AnalizadorSintactico.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/AnalizadorSintactico.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Argumento.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Argumento.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Arreglo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Arreglo.kt" afterDir="false" />
@@ -42,6 +45,7 @@
       <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Funcion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Funcion.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Impresion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Impresion.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/InvocacionFuncion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/InvocacionFuncion.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Parametro.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Parametro.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Retorno.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Retorno.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Sentencia.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Sentencia.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/UnidadDeCompilacion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/UnidadDeCompilacion.kt" afterDir="false" />
@@ -90,7 +94,14 @@
       <recent name="D:\DOCUMENTOS\IdeaProjects" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Kotlin.co.edu.uniquindio.compiladores.app.Aplicacion">
+    <configuration name="Principal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Principal" />
+      <module name="ProyectoCompiladores" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="co.edu.uniquindio.compiladores.app.Aplicacion" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="ProyectoCompiladores" />
       <option name="VM_PARAMETERS" />
@@ -107,6 +118,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.co.edu.uniquindio.compiladores.app.Aplicacion" />
+        <item itemvalue="Application.Principal" />
       </list>
     </recent_temporary>
   </component>
@@ -145,25 +157,25 @@
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1636251084046" />
     <state x="686" y="211" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1637524256846" />
-    <state width="1493" height="197" key="GridCell.Tab.0.bottom" timestamp="1639064910383">
+    <state width="1493" height="187" key="GridCell.Tab.0.bottom" timestamp="1639170059183">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639064910383" />
+    <state width="1493" height="187" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639170059183" />
     <state width="1877" height="197" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1638292546616" />
-    <state width="1493" height="197" key="GridCell.Tab.0.center" timestamp="1639064910382">
+    <state width="1493" height="187" key="GridCell.Tab.0.center" timestamp="1639170059183">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1639064910382" />
+    <state width="1493" height="187" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1639170059183" />
     <state width="1877" height="197" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1638292546616" />
-    <state width="1493" height="197" key="GridCell.Tab.0.left" timestamp="1639064910382">
+    <state width="1493" height="187" key="GridCell.Tab.0.left" timestamp="1639170059183">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1639064910382" />
+    <state width="1493" height="187" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1639170059183" />
     <state width="1877" height="197" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1638292546616" />
-    <state width="1493" height="197" key="GridCell.Tab.0.right" timestamp="1639064910382">
+    <state width="1493" height="187" key="GridCell.Tab.0.right" timestamp="1639170059183">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="197" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1639064910382" />
+    <state width="1493" height="187" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1639170059183" />
     <state width="1877" height="197" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1638292546616" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1634355383059">
       <screen x="0" y="0" width="1536" height="824" />
@@ -182,5 +194,19 @@
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1639060798012" />
     <state x="539" y="183" width="840" height="856" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1638293620273" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>file://$PROJECT_DIR$/src/co/edu/uniquindio/compiladores/sintaxis/Arreglo.kt</url>
+          <line>43</line>
+          <properties class="co.edu.uniquindio.compiladores.sintaxis.Arreglo" method="getJavaCode">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

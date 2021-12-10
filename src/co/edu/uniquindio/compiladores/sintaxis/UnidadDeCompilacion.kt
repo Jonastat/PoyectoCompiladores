@@ -30,4 +30,12 @@ class UnidadDeCompilacion (var listaFunciones:ArrayList<Funcion>){
         }
     }
 
+    fun getJavaCode(): String {
+        var codigo = "\nimport javax.swing.JOptionPane;\npublic class Principal {\n"
+        for (f in listaFunciones){
+            codigo += f.getJavaCode()
+        }
+        codigo += "}"
+        return codigo
+    }
 }

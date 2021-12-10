@@ -52,4 +52,15 @@ class Retorno () : Sentencia() {
         }
     }
 
+    override fun getJavaCode(): String {
+        if (expresion != null) {
+            return "return ${expresion!!.getJavaCode()};\n"
+        } else if (invocacionFuncion != null) {
+            return "return ${invocacionFuncion!!.getJavaCode()}"
+        } else if (nulo != null) {
+            return "return ${nulo!!.getJavaCode()};\n"
+        }
+        return "//Error al generar retorno"
+    }
+
 }

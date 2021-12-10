@@ -36,7 +36,7 @@ class ExpresionAritmetica() : Expresion() {
     }
 
     constructor(valorNumerico: ValorNumerico) : this() {
-        this.valorNumerico = valorNumerico
+            this.valorNumerico = valorNumerico
 
     }
 
@@ -136,5 +136,23 @@ class ExpresionAritmetica() : Expresion() {
 
     override fun toString(): String {
         return "ExpresionAritmetica(valorNumerico=$valorNumerico)"
+    }
+
+    override fun getJavaCode(): String {
+        var codigo = ""
+        if (valorNumerico != null) {
+            codigo += valorNumerico!!.getJavaCode()
+        } else if (expresionAritmetica1 != null && operador != null && expresionAritmetica2 != null) {
+            codigo += expresionAritmetica1!!.getJavaCode()+operador!!.getJavaCode()+expresionAritmetica2!!.getJavaCode()
+        } else {
+            if (expresionAritmetica1 != null) {
+                codigo += expresionAritmetica1!!.getJavaCode()
+            } else {
+                if (valorNumerico != null && operador != null && expresionAritmetica2 != null) {
+                    codigo += valorNumerico!!.getJavaCode()+operador!!.getJavaCode()+expresionAritmetica2!!.getJavaCode()
+                }
+            }
+        }
+        return codigo
     }
 }

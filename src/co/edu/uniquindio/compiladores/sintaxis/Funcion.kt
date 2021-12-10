@@ -48,9 +48,21 @@ class Funcion(
     }
 
     fun llenarTablaSimbolos(tablaSimbolos: TablaSimbolos, listaErrores: ArrayList<Error>, ambito : String){
-        tablaSimbolos.guardarSimboloFuncion(nombreFuncion.lexema, tipoRetorno.lexema, obtenerTiposParametros(), ambito, nombreFuncion.fila, nombreFuncion.columna)
+        var listaTiposParametros = obtenerTiposParametros()
+        var cadenaTipos = ""
+        if (listaTiposParametros.isNotEmpty()) {
+            cadenaTipos += "["
+            for (t in listaTiposParametros) {
+                cadenaTipos += t+", "
+            }
+            cadenaTipos = cadenaTipos.substring(0, cadenaTipos.length-2)
+            cadenaTipos += "]"
+        } else {
+            cadenaTipos += "[]"
+        }
+        tablaSimbolos.guardarSimboloFuncion("${nombreFuncion.lexema}$cadenaTipos", tipoRetorno.lexema, listaTiposParametros, ambito, nombreFuncion.fila, nombreFuncion.columna)
         for (p in listaParametros) {
-            tablaSimbolos.guardarSimboloValor(p.identificador.lexema, p.tipoDato.lexema, true, "${nombreFuncion.lexema}${obtenerTiposParametros()}", p.identificador.fila, p.identificador.columna)
+            tablaSimbolos.guardarSimboloValor(p.identificador.lexema, p.tipoDato.lexema, true, "${nombreFuncion.lexema}$cadenaTipos", p.identificador.fila, p.identificador.columna)
         }
         for (s in listaSentencias) {
             s.llenarTablaSimbolos(tablaSimbolos, listaErrores, nombreFuncion.lexema)
@@ -65,6 +77,27 @@ class Funcion(
 
     fun obtenerTipo(tablaSimbolos: TablaSimbolos, ambito: String, listaErrores: ArrayList<Error>): String {
         return tipoRetorno.lexema
+    }
+
+    fun getJavaCode():String {
+        var codigo = ""
+        if (nombreFuncion.lexema == "principal" && tipoRetorno.lexema == "Vacio") {
+            codigo = "public static void main (String[] args) {\n"
+        } else {
+            codigo = "static ${tipoRetorno.getJavaCode()} ${nombreFuncion.getJavaCode()} ("
+            if (listaParametros.isNotEmpty()) {
+                for (p in listaParametros) {
+                    codigo += p.getJavaCode() + ", "
+                }
+                codigo = codigo.substring(0, codigo.length - 2)
+            }
+            codigo += ") {\n"
+        }
+        for (s in listaSentencias){
+            codigo += s.getJavaCode()
+        }
+        codigo += "}\n"
+        return codigo
     }
 
 }

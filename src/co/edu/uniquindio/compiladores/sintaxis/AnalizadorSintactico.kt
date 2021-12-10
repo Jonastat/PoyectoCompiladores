@@ -152,8 +152,6 @@ class AnalizadorSintactico(var listaTokens: ArrayList<Token>) {
             } else {
                 reportarError("Falta dos puntos.")
             }
-        } else {
-            reportarError("Falta el identificador.")
         }
         return null
     }

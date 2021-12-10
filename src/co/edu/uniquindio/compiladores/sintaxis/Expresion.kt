@@ -15,6 +15,9 @@ open class Expresion () {
     }
 
     open fun analizarSemantica(tablaSimbolos: TablaSimbolos, listaErrores: ArrayList<Error>, ambito: String) {
+    }
 
+    open fun getJavaCode():String {
+        return ""
     }
 }

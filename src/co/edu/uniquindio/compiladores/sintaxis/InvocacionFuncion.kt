@@ -27,9 +27,20 @@ class InvocacionFuncion(var nombreFuncion: Token, var listaArgumentos:ArrayList<
 
     override fun analizarSemantica(tablaSimbolos: TablaSimbolos, listaErrores: ArrayList<Error>, ambito: String) {
         var listaTiposArgumentos = obtenerTiposArgumentos(tablaSimbolos, ambito, listaErrores)
-        var s = tablaSimbolos.buscarSimboloFuncion("${nombreFuncion.lexema}$listaTiposArgumentos", listaTiposArgumentos)
+        var cadenaTipos = ""
+        if (listaTiposArgumentos.isNotEmpty()) {
+            cadenaTipos += "["
+            for (t in listaTiposArgumentos) {
+                cadenaTipos += t+", "
+            }
+            cadenaTipos = cadenaTipos.substring(0, cadenaTipos.length-2)
+            cadenaTipos += "]"
+        } else {
+            cadenaTipos += "[]"
+        }
+        var s = tablaSimbolos.buscarSimboloFuncion("${nombreFuncion.lexema}$cadenaTipos", listaTiposArgumentos)
         if (s == null) {
-            listaErrores.add(Error("La función (${nombreFuncion.lexema}$listaTiposArgumentos) no existe.", nombreFuncion.fila, nombreFuncion.columna))
+            listaErrores.add(Error("La función (${nombreFuncion.lexema}$cadenaTipos) no existe.", nombreFuncion.fila, nombreFuncion.columna))
         }
     }
 
@@ -39,5 +50,18 @@ class InvocacionFuncion(var nombreFuncion: Token, var listaArgumentos:ArrayList<
             listaTiposArgumentos.add(a.obtenerTipoDato(tablaSimbolos, ambito, listaErrores))
         }
         return listaTiposArgumentos
+    }
+
+    override fun getJavaCode(): String {
+        var codigo = "${nombreFuncion.getJavaCode()}("
+        if (listaArgumentos.isNotEmpty()) {
+            for (argumento in listaArgumentos) {
+                codigo += "${argumento.getJavaCode()}, "
+            }
+            codigo = codigo.substring(0, codigo.length - 2)
+        }
+        codigo += ");\n"
+
+        return codigo
     }
 }

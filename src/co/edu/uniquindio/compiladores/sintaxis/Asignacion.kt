@@ -55,6 +55,18 @@ class Asignacion():Sentencia() {
                 invocacion!!.analizarSemantica(tablaSimbolos, listaErrores, ambito)
             }
         }
+    }
 
+    override fun getJavaCode(): String {
+
+        var codigo = "${identificadoVariable!!.getJavaCode()} ${operadorAsignacion!!.getJavaCode()} "
+
+        if (expresion != null) {
+            codigo += "${expresion!!.getJavaCode()};\n"
+        }
+        if (invocacion != null ){
+            codigo += "${invocacion!!.getJavaCode()}"
+        }
+        return codigo
     }
 }

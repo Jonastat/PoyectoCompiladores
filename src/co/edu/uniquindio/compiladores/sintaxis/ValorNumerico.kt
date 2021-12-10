@@ -28,4 +28,14 @@ class ValorNumerico( var signo: String?,  var numero: Token?):Expresion() {
         }
     }
 
+    override fun getJavaCode(): String {
+        var codigo = ""
+        if (signo == "-") {
+            codigo += signo+numero!!.getJavaCode()
+        } else {
+            codigo += numero!!.getJavaCode()
+        }
+        return codigo
+    }
+
 }

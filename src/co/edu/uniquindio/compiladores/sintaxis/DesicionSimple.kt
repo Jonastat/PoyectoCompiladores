@@ -58,4 +58,20 @@ class DesicionSimple(var expresionLogica: ExpresionLogica?, var listaSentenciasV
         }
     }
 
+    override fun getJavaCode(): String {
+        var codigo = "if ("+expresionLogica!!.getJavaCode()+"){\n"
+        for (s in listaSentenciasV) {
+            codigo += s.getJavaCode()
+        }
+        codigo += "}\n"
+        if (listaSentenciasF != null) {
+            codigo += "else {\n"
+            for (s in listaSentenciasF!!) {
+                codigo += s.getJavaCode()
+            }
+            codigo += "}\n"
+        }
+        return codigo
+    }
+
 }

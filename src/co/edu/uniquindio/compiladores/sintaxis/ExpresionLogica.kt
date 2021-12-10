@@ -72,4 +72,24 @@ class ExpresionLogica ():Expresion() {
         return "Binario"
     }
 
+    override fun getJavaCode(): String {
+        var codigo = ""
+        if (oLogico != null && oBinario != null && expresionAritmetica1 != null && expresionAritmetica2 != null) {
+            codigo += "${oLogico!!.getJavaCode()}(${expresionAritmetica1!!.getJavaCode()} ${oBinario!!.getJavaCode()} ${expresionAritmetica2!!.getJavaCode()})"
+        } else {
+            if (oLogico != null && expresionAritmetica1 != null) {
+                codigo += "${oLogico!!.getJavaCode()}(${expresionAritmetica1!!.getJavaCode()})"
+            } else {
+                if (expresionRelacional != null && oBinario != null && expresionAritmetica2 != null) {
+                    codigo += "${expresionRelacional!!.getJavaCode()} ${oBinario!!.getJavaCode()} ${expresionAritmetica2!!.getJavaCode()}"
+                } else {
+                    if (expresionRelacional != null) {
+                        codigo += "${expresionRelacional!!.getJavaCode()}"
+                    }
+                }
+            }
+        }
+        return codigo
+    }
+
 }

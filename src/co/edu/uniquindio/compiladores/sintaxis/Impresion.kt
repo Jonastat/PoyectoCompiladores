@@ -22,4 +22,13 @@ class Impresion(var listaExpresionCadena: ArrayList<ExpresionCadena>):Sentencia(
         }
     }
 
+    override fun getJavaCode(): String {
+        var codigo = ""
+        for (e in listaExpresionCadena) {
+            codigo += "${e.getJavaCode()}+"
+        }
+        codigo = codigo.substring(0, codigo.length - 1)
+        return "JOptionPane.showMessageDialog(null, $codigo);\n"
+    }
+
 }

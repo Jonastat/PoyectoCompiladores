@@ -3,6 +3,7 @@ package co.edu.uniquindio.compiladores.sintaxis
 import co.edu.uniquindio.compiladores.lexico.Error
 import co.edu.uniquindio.compiladores.semantica.TablaSimbolos
 import javafx.scene.control.TreeItem
+import javax.print.DocFlavor
 
 class Argumento () {
 
@@ -40,6 +41,17 @@ class Argumento () {
             return expresionAritmetica!!.obtenerTipo(tablaSimbolos, ambito, listaErrores)
         }
         return ""
+    }
+
+    fun getJavaCode(): String {
+        var codigo = ""
+        if (expresionAritmetica != null) {
+            codigo += "${expresionAritmetica!!.getJavaCode()}"
+        }
+        if (exprecionCadena != null) {
+            codigo += "${exprecionCadena!!.getJavaCode()}"
+        }
+        return codigo
     }
 
 }

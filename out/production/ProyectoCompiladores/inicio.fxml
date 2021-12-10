@@ -6,6 +6,7 @@
 <AnchorPane prefHeight="675.0" prefWidth="1042.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.compiladores.controladores.InicioController">
     <children>
         <Button fx:id="botonCambiar" layoutX="23.0" layoutY="52.0" mnemonicParsing="false" onAction="#analizarCodigo" text="Analizar Código" />
+        <Button fx:id="botonTraducir" layoutX="159.0" layoutY="52.0" mnemonicParsing="false" onAction="#traducirCodigo" text="Traducir" />
         <TextArea fx:id="codigoFuente" layoutX="23.0" layoutY="94.0" prefHeight="260.0" prefWidth="570.0" />
         <TabPane layoutX="23.0" layoutY="381.0" prefHeight="260.0" prefWidth="570.0">
             <tabs>

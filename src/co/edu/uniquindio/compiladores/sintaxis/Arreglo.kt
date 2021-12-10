@@ -40,4 +40,20 @@ open class Arreglo(var nombre: Token, var tipoDato:Token, var listaExpresiones:A
             }
         }
     }
+
+    override fun getJavaCode(): String {
+        var codigo = "${tipoDato.getJavaCode()}[] ${nombre.getJavaCode()}"
+        if (listaExpresiones != null) {
+            codigo += " = {"
+            if (listaExpresiones.isNotEmpty()) {
+                for (e in listaExpresiones) {
+                    codigo += "${e.getJavaCode()}, "
+                }
+                codigo = codigo.substring(0, codigo.length - 2)
+            }
+            codigo += "}"
+        }
+        codigo += ";\n"
+        return codigo
+    }
 }
